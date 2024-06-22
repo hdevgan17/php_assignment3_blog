@@ -1,0 +1,115 @@
+/* main.css */
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto; /* Center horizontally */
+}
+
+.recent-container{
+    width: 80%;
+    margin: 0 auto; /* Center horizontally */
+}
+
+/* Header Styles */
+.my-header {
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.my-header h1 {
+    margin: 0;
+}
+
+.heading{
+    text-decoration: none;
+}
+
+/* Navigation Styles */
+.navbar {
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    padding: 10px 0;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+/* Footer Styles */
+.footer {
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Form Styles */
+.group-form {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.group-form label {
+    font-weight: bold;
+}
+
+.group-form input[type="text"],
+.group-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+/* Button Styles */
+.primary-button {
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.primary-button:hover {
+    background: linear-gradient(to right, #182848, #4b6cb7);
+}
+
+.button-primary-outline {
+    background: transparent;
+    border: 1px solid #4b6cb7;
+    color: #4b6cb7;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.button-primary-outline:hover {
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    color: #ffffff;
+}
