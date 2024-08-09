@@ -50,20 +50,20 @@ if (isset($_GET['id'])) { // Retrieve blog to be edited, if id GET parameter is 
     <?php include('nav.php'); ?>
 
     <main class="recent-container">
-        <?php if ($id) : ?>
-            <h1 class="title-blog"><?= $blog['title'] ?></h1>
-            <small class="blog-date">Posted on <time datetime="<?= $blog['date_posted'] ?>">
-                    <?= date_format(date_create($blog['date_posted']), 'F j, Y G:i') ?><time>
+        <?php if ($id && $blog) : ?>
+            <h1 class="title-blog"><?= htmlspecialchars($blog['title']) ?></h1>
+            <small class="blog-date">Posted on <time datetime="<?= htmlspecialchars($blog['date_posted']) ?>">
+                    <?= date_format(date_create($blog['date_posted']), 'F j, Y, g:i a') ?></time>
                         &ensp;
             </small>
 
-            <!--edit link-->
-            <a href="edit.php?id=<?= $blog['id'] ?>" class="blog-postedit">edit</a>
+            <!-- Edit link -->
+            <a href="edit.php?id=<?= htmlspecialchars($blog['id']) ?>" class="blog-postedit">edit</a>
             <p class="blog-content">
-                <?= $blog['content'] ?>
+                <?= htmlspecialchars($blog['content']) ?>
             </p>
         <?php else : ?>
-            <p>No blog selected. <a href="?id=1"> Try this link... </a>.</p>
+            <p>No blog selected. <a href="index.php">Go back to the home page.</a></p>
         <?php endif ?>
     </main>
 

@@ -10,10 +10,10 @@
 
 require('connect.php');
 
-//SQL is written as a string and the order of posted entries is descending.
+// SQL is written as a string and the order of posted entries is descending.
 $query = "SELECT * FROM blog ORDER BY date_posted DESC LIMIT 5";
 
-// A PDO::Statemnet is prepared from the query.
+// A PDO::Statement is prepared from the query.
 $statement = $db->prepare($query);
 
 // Execution on the DB server is delayed until we execute().
@@ -39,31 +39,31 @@ $statement->execute();
 
     <?php include('nav.php');?>
     
-    <!--This class contains the heading for the blog entries which are recently created. -->
+    <!-- This class contains the heading for the blog entries which are recently created. -->
     <main class = "recent-container">
         <h2>Recently posted blog entries:</h2>
     
-    <!--This is divide class is for when there is no blog data added.-->
+    <!-- This is divide class is for when there is no blog data added. -->
     <?php if($statement->rowCount() == 0) : ?>
         <div class = "rownum">
             <p>No blog entries here!</p>
         </div>
     <?php exit; endif; ?>  
     
-    <!--This is the main while loop for fetching the blog data.-->
+    <!-- This is the main while loop for fetching the blog data. -->
     <?php while($row = $statement->fetch()): ?>
 
         <h3 class = "title-blog">
             <a href = "show.php?id=<?=$row['id']?>"><?=$row['title']?></a>
         </h3>
 
-        <!--showing the format of date for the post-->
-        <small class = "blog-date">Posted on <time datetime ="<?=$row['date_posted']?>">
-        <?=date_format(date_create($row['date_posted']), 'F j, Y G:i') ?></time>
+        <!-- Showing the format of date for the post -->
+        <small class = "blog-date">Posted on <time datetime="<?=$row['date_posted']?>">
+        <?=date_format(date_create($row['date_posted']), 'F j, Y, g:i a') ?></time>
             &ensp;
         </small>    
 
-        <!--edit link-->
+        <!-- Edit link -->
         <a href = "edit.php?id=<?=$row['id']?>" class="blog-postedit">edit</a><br><br>
         <?php
             $content = $row['content'];

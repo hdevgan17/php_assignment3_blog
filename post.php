@@ -11,31 +11,33 @@
 require('authenticate.php');
 require('connect.php');
 
+date_default_timezone_set('America/Winnipeg');
+
 if ($_POST && !empty($_POST['title']) && !empty($_POST['content'])) {
     // Sanitize user input to escape HTML entities and filter out dangerous characters.
     $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+    $date_posted = date('Y-m-d H:i:s');
+
     // Build the parameterized SQL query and bind to the above sanitized values.
-    $query = "INSERT INTO blog (title, content) VALUES (:title, :content)";
+    $query = "INSERT INTO blog (title, content, date_posted) VALUES (:title, :content, :date_posted)";
     $statement = $db->prepare($query);
 
     // Bind values to the parameters
     $statement->bindValue(':title', $title);
     $statement->bindValue(':content', $content);
+    $statement->bindValue(':date_posted', $date_posted);
 
     // Execute the INSERT
-    // execute() will check for possible SQL injection and remove if necessary
     if($statement->execute()) {
-        echo "Success";
+        $id = $db->lastInsertId();
+        header("Location: show.php?id={$id}");
+        exit;
+    } else {
+        echo "Error: Could not create the blog post.";
     }
-
-    // Change to the show.php?{$id}
-    header("Location: index.php?{$id}");
-    exit;
-
 }
-
 ?>
 
 <!DOCTYPE html>
